@@ -28,7 +28,7 @@ namespace PRJ_Delivery.Controllers
         {
             try
             {
-                var datos = await FuncionarioRn.getAll(Personas);
+                var datos = await FuncionarioRn.get(FacturaDTO  );
                 return Ok(datos);
 
             }
