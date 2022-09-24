@@ -1,42 +1,40 @@
 ﻿using AutoMapper;
-using PRJ_Delivery.Data;
-using PRJ_Delivery.DTOs;
-using PRJ_Delivery.Helpers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Authorization;
-using System.Data;
-using PRJ_Delivery.Models;
+using PRJ_Delivery.Data;
+using PRJ_Delivery.DTOs;
+using PRJ_Delivery.Helpers;
 
-namespace PRJ_Delivery.Controladores
+namespace PRJ_Delivery.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PersonasController : ControllerBase
+    public class FacturaController : ControllerBase
     {
         private readonly deliveryContext context;
         private readonly IMapper mapper;
-        public PersonasController(deliveryContext context, IMapper mapper)
+
+        public FacturaController(deliveryContext context, IMapper mapper)
         {
             this.context = context;
             this.mapper = mapper;
         }
-        [HttpGet]
 
+        [HttpGet]
         public async Task<ActionResult> Get([FromQuery] PaginacionDTO paginacion)
         {
             try
             {
-                var query = context.Personas
+                var query = context.Facturas
                 .Include(x => x.Pedidos)
                 .AsQueryable();
 
                 var datosPaginacion = await query.datosPaginacion(paginacion.cantidadRegistroPorPagina);
                 var entidades = await query.Paginar(paginacion).ToListAsync();
-                var list = mapper.Map<List<PersonaDTO>>(entidades);
+                var list = mapper.Map<List<FacturaDTO>>(entidades);
 
-                return Ok(new ResponseListDTO<PersonaDTO>
+                return Ok(new ResponseListDTO<FacturaDTO>
                 {
                     cantidad = int.Parse(datosPaginacion["CantidadPaginas"]),
                     pagina = paginacion.Pagina,
@@ -50,22 +48,5 @@ namespace PRJ_Delivery.Controladores
                 return new ResponseError(StatusCodes.Status400BadRequest, ex.Message).GetObjectResult();
             }
         }
-        [HttpPost]
-        
-        public async Task<ActionResult> Post([FromBody] PersonaInsertarDTO personaInsertarDTO)
-        {
-            try
-            {
-                var persona = mapper.Map<Persona>(personaInsertarDTO);
-                await context.Personas.AddAsync(persona);
-                await context.SaveChangesAsync();
-                return Ok(persona);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-
     }
 }
