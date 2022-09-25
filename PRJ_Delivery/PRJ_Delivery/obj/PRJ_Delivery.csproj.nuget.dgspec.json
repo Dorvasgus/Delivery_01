@@ -1,25 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\proyecto_final\\Delivery_01\\PRJ_Delivery\\PRJ_Delivery\\PRJ_Delivery.csproj": {}
+    "D:\\Universidad\\Sexto Semestre\\Programacion Web II\\PRJ_Delivery\\PRJ_Delivery\\PRJ_Delivery\\PRJ_Delivery.csproj": {}
   },
   "projects": {
-    "D:\\proyecto_final\\Delivery_01\\PRJ_Delivery\\PRJ_Delivery\\PRJ_Delivery.csproj": {
+    "D:\\Universidad\\Sexto Semestre\\Programacion Web II\\PRJ_Delivery\\PRJ_Delivery\\PRJ_Delivery\\PRJ_Delivery.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\proyecto_final\\Delivery_01\\PRJ_Delivery\\PRJ_Delivery\\PRJ_Delivery.csproj",
+        "projectUniqueName": "D:\\Universidad\\Sexto Semestre\\Programacion Web II\\PRJ_Delivery\\PRJ_Delivery\\PRJ_Delivery\\PRJ_Delivery.csproj",
         "projectName": "PRJ_Delivery",
-        "projectPath": "D:\\proyecto_final\\Delivery_01\\PRJ_Delivery\\PRJ_Delivery\\PRJ_Delivery.csproj",
-        "packagesPath": "C:\\Users\\Usuario1\\.nuget\\packages\\",
-        "outputPath": "D:\\proyecto_final\\Delivery_01\\PRJ_Delivery\\PRJ_Delivery\\obj\\",
+        "projectPath": "D:\\Universidad\\Sexto Semestre\\Programacion Web II\\PRJ_Delivery\\PRJ_Delivery\\PRJ_Delivery\\PRJ_Delivery.csproj",
+        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
+        "outputPath": "D:\\Universidad\\Sexto Semestre\\Programacion Web II\\PRJ_Delivery\\PRJ_Delivery\\PRJ_Delivery\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Usuario1\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -90,8 +85,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -103,7 +97,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     }

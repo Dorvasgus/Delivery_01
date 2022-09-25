@@ -25,6 +25,7 @@ namespace PRJ_Delivery.Data
         public virtual DbSet<Pedido> Pedidos { get; set; } = null!;
         public virtual DbSet<Persona> Personas { get; set; } = null!;
         public virtual DbSet<Producto> Productos { get; set; } = null!;
+        public virtual DbSet<Rol> Rols { get; set; } = null!;
         public virtual DbSet<TipoVehiculo> TipoVehiculos { get; set; } = null!;
         public virtual DbSet<Vehiculo> Vehiculos { get; set; } = null!;
 
@@ -122,11 +123,15 @@ namespace PRJ_Delivery.Data
 
                 entity.Property(e => e.Password).HasMaxLength(50);
 
-                entity.Property(e => e.Rol).HasMaxLength(50);
-
                 entity.Property(e => e.UserName).HasMaxLength(50);
 
                 entity.Property(e => e.Vehiculo).HasColumnName("vehiculo");
+
+                entity.HasOne(d => d.RolNavigation)
+                    .WithMany(p => p.Funcionarios)
+                    .HasForeignKey(d => d.Rol)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Funcionario_Funcionario");
 
                 entity.HasOne(d => d.VehiculoNavigation)
                     .WithMany(p => p.Funcionarios)
@@ -205,6 +210,8 @@ namespace PRJ_Delivery.Data
 
                 entity.ToTable("Persona");
 
+                entity.HasIndex(e => e.IdPersona, "FK_Persona_Rol");
+
                 entity.Property(e => e.IdPersona).ValueGeneratedNever();
 
                 entity.Property(e => e.Apellido).HasMaxLength(50);
@@ -224,6 +231,12 @@ namespace PRJ_Delivery.Data
                     .HasForeignKey(d => d.Rol)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Persona_Funcionario");
+
+                entity.HasOne(d => d.Rol1)
+                    .WithMany(p => p.Personas)
+                    .HasForeignKey(d => d.Rol)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Persona_Rol");
             });
 
             modelBuilder.Entity<Producto>(entity =>
@@ -237,6 +250,19 @@ namespace PRJ_Delivery.Data
                 entity.Property(e => e.PizzaMediana).HasMaxLength(50);
 
                 entity.Property(e => e.PizzaPequeña).HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<Rol>(entity =>
+            {
+                entity.HasKey(e => e.IdRol);
+
+                entity.ToTable("Rol");
+
+                entity.Property(e => e.IdRol).HasColumnName("idRol");
+
+                entity.Property(e => e.Alias)
+                    .HasMaxLength(50)
+                    .IsFixedLength();
             });
 
             modelBuilder.Entity<TipoVehiculo>(entity =>

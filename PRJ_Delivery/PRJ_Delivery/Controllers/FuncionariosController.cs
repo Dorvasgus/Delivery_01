@@ -28,8 +28,9 @@ namespace PRJ_Delivery.Controllers
         {
             try
             {
-                var datos = await FuncionarioRn.get(FacturaDTO  );
-                return Ok(datos);
+                //var datos = await FuncionarioRn.get(  );
+                //return Ok(datos);
+                return Ok();
 
             }
             catch (Exception ex)

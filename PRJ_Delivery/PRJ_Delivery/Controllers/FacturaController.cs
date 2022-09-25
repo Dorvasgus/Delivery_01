@@ -26,21 +26,22 @@ namespace PRJ_Delivery.Controllers
         {
             try
             {
-                var query = context.Facturas
-                .Include(x => x.Pedidos)
-                .AsQueryable();
+                //var query = context.Facturas
+                //.Include(x => x.Pedidos)
+                //.AsQueryable();
 
-                var datosPaginacion = await query.datosPaginacion(paginacion.cantidadRegistroPorPagina);
-                var entidades = await query.Paginar(paginacion).ToListAsync();
-                var list = mapper.Map<List<FacturaDTO>>(entidades);
+                //var datosPaginacion = await query.datosPaginacion(paginacion.cantidadRegistroPorPagina);
+                //var entidades = await query.Paginar(paginacion).ToListAsync();
+                //var list = mapper.Map<List<FacturaDTO>>(entidades);
 
-                return Ok(new ResponseListDTO<FacturaDTO>
-                {
-                    cantidad = int.Parse(datosPaginacion["CantidadPaginas"]),
-                    pagina = paginacion.Pagina,
-                    total = int.Parse(datosPaginacion["TotalRegistros"]),
-                    valores = list
-                });
+                //return Ok(new ResponseListDTO<FacturaDTO>
+                //{
+                //    cantidad = int.Parse(datosPaginacion["CantidadPaginas"]),
+                //    pagina = paginacion.Pagina,
+                //    total = int.Parse(datosPaginacion["TotalRegistros"]),
+                //    valores = list
+                //});
+                return Ok();
             }
             catch (Exception ex)
             {
