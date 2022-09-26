@@ -21,48 +21,48 @@ namespace PRJ_Delivery.Controllers
             this.mapper = mapper;
         }
         // GET: api/<VehiculoController>
-        //[HttpGet]
-        //public async Task<ActionResult> Get([FromQuery] PaginacionDTO paginacion)
-        //{
-        //    try
-        //    {
-        //        var query = context.Vehiculos
-        //        .Include(x => x.TipoVehiculo)
-        //        .AsQueryable();
+        [HttpGet]
+        public async Task<ActionResult> Get([FromQuery] PaginacionDTO paginacion)
+        {
+            try
+            {
+                var query = context.Vehiculos
+                .Include(x => x.TipoVehiculo)
+                .AsQueryable();
 
-        //        var datosPaginacion = await query.datosPaginacion(paginacion.cantidadRegistroPorPagina);
-        //        var entidades = await query.Paginar(paginacion).ToListAsync();
-        //        var list = mapper.Map<List<VehiculoDTO>>(entidades);
+                var datosPaginacion = await query.datosPaginacion(paginacion.cantidadRegistroPorPagina);
+                var entidades = await query.Paginar(paginacion).ToListAsync();
+                var list = mapper.Map<List<VehiculoDTO>>(entidades);
 
-        //        return Ok(new ResponseListDTO<VehiculoDTO>
-        //        {
-        //            cantidad = int.Parse(datosPaginacion["CantidadPaginas"]),
-        //            pagina = paginacion.Pagina,
-        //            total = int.Parse(datosPaginacion["TotalRegistros"]),
-        //            valores = list
-        //        });
-        //    }
-        //    catch (Exception ex)
-        //    {
+                return Ok(new ResponseListDTO<VehiculoDTO>
+                {
+                    cantidad = int.Parse(datosPaginacion["CantidadPaginas"]),
+                    pagina = paginacion.Pagina,
+                    total = int.Parse(datosPaginacion["TotalRegistros"]),
+                    valores = list
+                });
+            }
+            catch (Exception ex)
+            {
 
-        //        return new ResponseError(StatusCodes.Status400BadRequest, ex.Message).GetObjectResult();
-        //    }
+                return new ResponseError(StatusCodes.Status400BadRequest, ex.Message).GetObjectResult();
+            }
 
 
 
-        //}
-        //[HttpGet ]
-        ////[Authorize(Roles ="ADM")]
-        //public async Task<ActionResult<List<VehiculoDTO>>> Get()
-        //{
-        //    var vehiculo = await context.Vehiculos
-        //        .Include(x => x.TipoVehiculo)
-        //        .ToListAsync();
+        }
+        [HttpGet]
+        //[Authorize(Roles ="ADM")]
+        public async Task<ActionResult<List<VehiculoDTO>>> Get()
+        {
+            var vehiculo = await context.Vehiculos
+                .Include(x => x.TipoVehiculo)
+                .ToListAsync();
 
-        //    var vehiculoDTOs = mapper.Map<List<VehiculoDTO>>(vehiculo);
+            var vehiculoDTOs = mapper.Map<List<VehiculoDTO>>(vehiculo);
 
-        //    return Ok(vehiculoDTOs);
-        //}
+            return Ok(vehiculoDTOs);
+        }
         // GET api/<VehiculoController>/5
         [HttpGet("{id}")]
         public string Get(int id)
